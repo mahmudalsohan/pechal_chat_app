@@ -8,11 +8,42 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+
+    animation = ColorTween(
+      begin: Colors.white,
+      end: Colors.blueGrey[900],
+    ).animate(controller);
+
+    controller.forward();
+
+    controller.addListener(() {
+      setState(() {});
+      print(controller.value);
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -26,7 +57,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   tag: 'pechal',
                   child: Container(
                     child: Image.asset('assets/images/pechal.png'),
-                    height: 70.0,
+                    height: controller.value * 80,
                   ),
                 ),
                 Text(
