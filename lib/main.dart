@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pechal/screens/chat_screen.dart';
 import 'package:pechal/screens/login_screen.dart';
 import 'package:pechal/screens/registration_screen.dart';
-
 import 'package:pechal/screens/welcome_screen.dart';
 
 void main() => runApp(FlashChat());
@@ -13,7 +12,7 @@ class FlashChat extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          bodyText2: TextStyle(color: Colors.black54),
+          bodyText2: TextStyle(color: Colors.white),
         ),
       ),
       initialRoute: WelcomeScreen.go,

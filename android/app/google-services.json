@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "479566061587",
+    "project_id": "pechal-chat-app",
+    "storage_bucket": "pechal-chat-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479566061587:android:5678c73a778cb074fcdfe6",
+        "android_client_info": {
+          "package_name": "pechal.mahmudalsohan.com.pechal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479566061587-nij13v2u9rl158av3o7lendmik3mdm8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmDAfhjFpGpzSDZ1nH6rTXQCZ0pNXnP2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479566061587-nij13v2u9rl158av3o7lendmik3mdm8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

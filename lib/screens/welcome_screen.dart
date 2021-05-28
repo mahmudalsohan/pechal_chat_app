@@ -30,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     controller.addListener(() {
       setState(() {});
-      print(controller.value);
+      // print(controller.value);
     });
   }
 
@@ -48,16 +48,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Hero(
-                  tag: 'pechal',
+                  tag: 'logo',
                   child: Container(
                     child: Image.asset('assets/images/pechal.png'),
-                    height: controller.value * 80,
+                    height: controller.value * 60,
                   ),
                 ),
                 Text(
@@ -74,14 +74,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               height: 48.0,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 elevation: 5.0,
-                color: Colors.lightBlueAccent,
+                color: Colors.blueAccent,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                    //Go to login screen.
                     Navigator.pushNamed(context, LoginScreen.go);
                   },
                   minWidth: 200.0,
@@ -93,20 +92,19 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
                 elevation: 5.0,
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                    //Go to registration screen.
                     Navigator.pushNamed(context, RegistrationScreen.go);
                   },
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
-                    'Register',
+                    'Registration',
                   ),
                 ),
               ),
