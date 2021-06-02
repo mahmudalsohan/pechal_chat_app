@@ -12,9 +12,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
-  final _auth = FirebaseAuth.instance;
-  late String email;
-  late String password;
+  final _firebaseAuth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +28,20 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 220.0,
-                  child: Image.asset('assets/images/pechal.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 220.0,
+                    child: Image.asset('assets/images/pechal.png'),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 48.0,
               ),
               TextField(
-                onChanged: (value) {
-                  email = value;
-                },
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter your email',
@@ -51,9 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               TextField(
-                onChanged: (value) {
-                  password = value;
-                },
+                controller: _passwordController,
                 obscureText: true,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter your password',
@@ -75,8 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
 
                       try {
-                        await _auth.signInWithEmailAndPassword(
-                            email: email, password: password);
+                        await _firebaseAuth.signInWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text);
                         Navigator.pushNamed(context, ChatScreen.go);
                         setState(() {
                           showSpinner = false;

@@ -13,9 +13,9 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool showSpinner = false;
-  final _auth = FirebaseAuth.instance;
-  late String email;
-  late String password;
+  final _firebaseAuth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +29,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 220.0,
-                  child: Image.asset('assets/images/pechal.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 220.0,
+                    child: Image.asset('assets/images/pechal.png'),
+                  ),
                 ),
               ),
               SizedBox(height: 48.0),
               TextField(
-                onChanged: (value) {
-                  email = value;
-                },
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter your email',
@@ -48,9 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               SizedBox(height: 8.0),
               TextField(
-                onChanged: (value) {
-                  password = value;
-                },
+                controller: _passwordController,
                 obscureText: true,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter your password',
@@ -70,8 +68,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       });
 
                       try {
-                        await _auth.createUserWithEmailAndPassword(
-                            email: email, password: password);
+                        await _firebaseAuth.createUserWithEmailAndPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
                         Navigator.pushNamed(context, ChatScreen.go);
 
                         setState(() {
